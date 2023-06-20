@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>URL Shortener</title>
+    <script>
+        if (performance.navigation.type === 1) {
+            window.location.href = "{% url 'home' %}";
+        }
+    </script>
+</head>
+
+<body style="background-color: rgb(1, 1, 22);">
+    <h1 style="color: azure; text-align: center; margin-top:10%">URL SHORTENER</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div style="margin-left:34%; margin-top: 4%">
+            <input type="url" name="long_url" placeholder="Enter a long URL"
+                style="padding-left: 8%; padding-right: 8%; padding-top:0.6%; padding-bottom:0.6%; text-align:center; border-radius: 5%"
+                ;>
+            <input type="submit" value="Shorten"
+                style="margin-left: 3%; padding-left: 3%; padding-right: 3%; padding-top:0.6%; padding-bottom:0.6%; text-align:center; border-radius: 5%; color:black">
+        </div>
+
+    </form>
+
+
+    {% if shortened_url %}
+    <p
+    style="margin-right:35%;margin-left: 35%; text-align:center;padding:1%; color:black; background-color:white; margin-top: 5%">
+        Shortened URL: <a href="{{ request.scheme }}://{{ request.get_host }}/{{ shortened_url.short_code }}">
+            {{ request.scheme }}://{{ request.get_host }}/{{ shortened_url.short_code }}</a></p>
+    {% endif %}
+
+    <div style="position: absolute; top: 20px; right: 20px;">
+        <a href="{% url 'url_list' %}"
+            style="text-decoration: none; background-color: azure; color: black; padding: 8px 16px; border-radius: 5%;">View
+            URL List</a>
+    </div>
+
+</body>
+
+</html>

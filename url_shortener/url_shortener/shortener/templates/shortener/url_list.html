@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* CSS styles */
+        body {
+            background-color: #f0f5ff;
+        }
+
+        .url-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-table th,
+        .url-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .url-table th {
+            text-align: center;
+            background-color: #071227;
+            color: #fff;
+        }
+
+        .url-table tr:hover {
+            background-color: #eaf2ff;
+        }
+
+        .url-table td[colspan="2"] {
+            text-align: center;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body style="background-color: rgb(1, 1, 22);;">
+    <table class="url-table">
+        <thead>
+            <tr>
+                <th>Long URL</th>
+                <th>Short URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+            <tr>
+                <td>{{ url.long_url }}</td>
+                <td>{{ url.short_code }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No URLs found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
